@@ -1,0 +1,12 @@
+*__pycache__
+*.pyc
+*.vscode
+*.mp4
+*logs
+*visualization.*
+*tmp
+*log
+*output
+*.idea
+*weight
+*logs

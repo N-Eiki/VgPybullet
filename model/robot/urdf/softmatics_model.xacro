@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<robot name="softmatics_model" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find softmatics_visualization)/urdf/softmatics_model_macro.xacro" />
+  <xacro:softmatics prefix=""/>
+</robot>

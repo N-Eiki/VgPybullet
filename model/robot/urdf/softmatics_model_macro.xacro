@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find softmatics_visualization)/urdf/softmatics_transmission.xacro" />
+
+  <xacro:macro name="knuckle" params="prefix fingerprefix">
+    <link name="${prefix}${fingerprefix}_knuckle">
+      <inertial>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <mass value="0.02" />
+        <inertia ixx="1.0E-03" ixy="1.0E-06" ixz="1.0E-06" iyy="1.0E-03" iyz="1.0E-06" izz="1.0E-03" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://softmatics_visualization/meshes/visual/finger.stl" />
+        </geometry>
+        <material name="">
+          <color rgba="0.8 0.8 0.8 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://softmatics_visualization/meshes/collision/finger.stl" />
+        </geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+
+  <xacro:include filename="$(find softmatics_visualization)/urdf/softmatics.xacro" />
+
+  <xacro:macro name="knuckle_joint" params="prefix">
+    <joint name="${prefix}knuckle_joint" type="revolute">
+      <origin xyz="0.000646 -0.038583 0.150004" rpy="0 0 0" />
+      <parent link="${prefix}softmatics_base_link" />
+      <child link="${prefix}first_knuckle" />
+      <axis xyz="-1 0 0" />
+      <limit lower="0.0" upper="0.872664" velocity="2.0" effort="1000" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="second_knuckle_joint" params="prefix">
+    <joint name="${prefix}second_knuckle_joint" type="revolute">
+      <origin xyz="-0.036186 -0.012108 0.150004" rpy="0 0 -1.2566368" />
+      <parent link="${prefix}softmatics_base_link" />
+      <child link="${prefix}second_knuckle" />
+      <axis xyz="-1 0 0" />
+      <limit lower="0.0" upper="0.872664" velocity="2.0" effort="1000" />
+    <mimic joint="${prefix}knuckle_joint" multiplier="1" offset="0" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="third_knuckle_joint" params="prefix">
+    <joint name="${prefix}third_knuckle_joint" type="revolute">
+      <origin xyz="-0.022852 0.03220 0.150004" rpy="0 0 -2.51327" />
+      <parent link="${prefix}softmatics_base_link" />
+      <child link="${prefix}third_knuckle" />
+      <axis xyz="-1 0 0" />
+      <limit lower="0.0" upper="0.872664" velocity="2.0" effort="1000" />
+    <mimic joint="${prefix}knuckle_joint" multiplier="1" offset="0" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="fourth_knuckle_joint" params="prefix">
+    <joint name="${prefix}fourth_knuckle_joint" type="revolute">
+      <origin xyz="0.023335 0.031089 0.150004" rpy="0 0 -3.76991" />
+      <parent link="${prefix}softmatics_base_link" />
+      <child link="${prefix}fourth_knuckle" />
+      <axis xyz="-1 0 0" />
+      <limit lower="0.0" upper="0.872664" velocity="2.0" effort="1000" />
+    <mimic joint="${prefix}knuckle_joint" multiplier="1" offset="0" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="fifth_knuckle_joint" params="prefix">
+    <joint name="${prefix}fifth_knuckle_joint" type="revolute">
+      <origin xyz="0.036502 -0.01179 0.150004" rpy="0 0 -5.02655" />
+      <parent link="${prefix}softmatics_base_link" />
+      <child link="${prefix}fifth_knuckle" />
+      <axis xyz="-1 0 0" />
+      <limit lower="0.0" upper="0.872664" velocity="2.0" effort="1000" />
+    <mimic joint="${prefix}knuckle_joint" multiplier="1" offset="0" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="softmatics" params="prefix">
+    <xacro:softmatics_base_link prefix="${prefix}"/>
+    <xacro:finger_links prefix="${prefix}" fingerprefix="first"/>
+    <xacro:finger_links prefix="${prefix}" fingerprefix="second"/>
+    <xacro:finger_links prefix="${prefix}" fingerprefix="third"/>
+    <xacro:finger_links prefix="${prefix}" fingerprefix="fourth"/>
+    <xacro:finger_links prefix="${prefix}" fingerprefix="fifth"/>
+    <xacro:knuckle_joint prefix="${prefix}"/>
+    <xacro:second_knuckle_joint prefix="${prefix}"/>
+    <xacro:third_knuckle_joint prefix="${prefix}"/>
+    <xacro:fourth_knuckle_joint prefix="${prefix}"/>
+    <xacro:fifth_knuckle_joint prefix="${prefix}"/>
+    <xacro:softmatics_transmission prefix="${prefix}"/>
+  </xacro:macro>
+</robot>

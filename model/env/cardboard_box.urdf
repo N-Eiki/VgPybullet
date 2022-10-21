@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<robot name="cardboard_box_small">
+  <material name="cardboard_color">
+    <color rgba="0.5 0.22 0.16 0.9"/>
+  </material>
+
+  <link name="bottom_link">
+    <contact>
+      <lateral_friction value="0.5"/>
+      <rolling_friction value="0.0"/>
+      <contact_cfm value="0.0"/>
+      <contact_erp value="1.0"/>
+    </contact>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.01"/>
+      <geometry>
+        <box size="0.30 0.48 0.02"/>
+      </geometry>
+      <material name="cardboard_color"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.01"/>
+      <geometry>
+        <box size="0.30 0.48 0.02"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="front_link">
+    <contact>
+      <lateral_friction value="0.5"/>
+      <rolling_friction value="0.0"/>
+      <contact_cfm value="0.0"/>
+      <contact_erp value="1.0"/>
+    </contact>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.16 0.0 0.12"/>
+      <geometry>
+        <box size="0.02 0.52 0.22"/>
+      </geometry>
+      <material name="cardboard_color"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.16 0.0 0.12"/>
+      <geometry>
+        <box size="0.02 0.52 0.22"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="back_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.16 0.0 0.12"/>
+      <geometry>
+        <box size="0.02 0.52 0.22"/>
+      </geometry>
+      <material name="cardboard_color"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.16 0.0 0.12"/>
+      <geometry>
+        <box size="0.02 0.52 0.22"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="left_link">
+    <contact>
+      <lateral_friction value="0.5"/>
+      <rolling_friction value="0.0"/>
+      <contact_cfm value="0.0"/>
+      <contact_erp value="1.0"/>
+    </contact>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.25 0.12"/>
+      <geometry>
+        <box size="0.30 0.02 0.22"/>
+      </geometry>
+      <material name="cardboard_color"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0.25 0.12"/>
+      <geometry>
+        <box size="0.30 0.02 0.22"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="right_link">
+    <contact>
+      <lateral_friction value="0.01"/>
+      <rolling_friction value="0.01"/>
+      <contact_cfm value="0.0"/>
+      <contact_erp value="1.0"/>
+    </contact>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 -0.25 0.12"/>
+      <geometry>
+        <box size="0.30 0.02 0.22"/>
+      </geometry>
+      <material name="cardboard_color"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 -0.25 0.12"/>
+      <geometry>
+        <box size="0.30 0.02 0.22"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="bottom_front_joint" type="fixed">
+    <parent link="bottom_link"/>
+    <child link="front_link"/>
+    <origin rpy="0.0 0.0 0" xyz="0 0 0"/>
+  </joint>
+  <joint name="bottom_back_joint" type="fixed">
+    <parent link="bottom_link"/>
+    <child link="back_link"/>
+    <origin rpy="0.0 0.0 0" xyz="0 0 0"/>
+  </joint>
+  <joint name="bottom_left_joint" type="fixed">
+    <parent link="bottom_link"/>
+    <child link="left_link"/>
+    <origin rpy="0.0 0.0 0" xyz="0 0 0"/>
+  </joint>
+  <joint name="bottom_right_joint" type="fixed">
+    <parent link="bottom_link"/>
+    <child link="right_link"/>
+    <origin rpy="0.0 0.0 0" xyz="0 0 0"/>
+  </joint>
+</robot>
